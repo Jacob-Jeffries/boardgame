@@ -67,8 +67,8 @@ public class Coordinate {
   }
 
   public String toString() {
-    String file = "" + (char) (fileIndex + 97);
-    String rank = "" + (char) (rankIndex + 49);
+    String file = "" + getFile();
+    String rank = "" + (char) (getRank() + 48);
     return file + rank;
   }
 
