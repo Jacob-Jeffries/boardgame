@@ -29,5 +29,22 @@ public class MoveTest {
   @Test
   public void testPlacePiece(){
     placePieceMove.makeOn(board);
+    assertFalse(board.isEmpty(a1));
+    assertEquals(piece, board.getPiece(a1));
+    placePieceMove.unmakeOn(board);
+    assertTrue(board.isEmpty(a1));
+  }
+
+  @Test
+  public void testMovePiece(){
+    placePieceMove.makeOn(board);
+    movePieceMove.makeOn(board);
+    assertTrue(board.isEmpty(a1));
+    assertFalse(board.isEmpty(b3));
+    assertEquals(piece, board.getPiece(b3));
+    movePieceMove.unmakeOn(board);
+    assertFalse(board.isEmpty(a1));
+    assertTrue(board.isEmpty(b3));
+    assertEquals(piece, board.getPiece(a1));
   }
 }
