@@ -1,9 +1,13 @@
 package games;
 
+import java.util.List;
+
 public class KnightsTourPlayer extends Player{
 
-  public KnightsTourPlayer(){
-    super();
+  public KnightsTourPlayer(Board aBoard, Coordinate aCoordinate){
+    super(aBoard);
+    Move firstMove = new Move(new Knight(), null, aCoordinate);
+    make(firstMove);
   }
 
   @Override
@@ -12,7 +16,9 @@ public class KnightsTourPlayer extends Player{
   }
 
   @Override
-  public List<Move> nextLegalMoves(){}
-  List<Move> nextMoves;
+  public List<Move> nextLegalMoves(){
+    List<Move> nextMoves;
+    return null;
+  }
 
 }

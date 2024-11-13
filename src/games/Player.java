@@ -1,6 +1,7 @@
 package games;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public abstract class Player {
   protected Board board;
@@ -8,6 +9,15 @@ public abstract class Player {
 
   public abstract boolean hasSolvedPuzzle();
   public abstract List<Move> nextLegalMoves();
+
+  public Player(Board aBoard){
+    board = aBoard;
+    moves = new ArrayList<Move>();
+  }
+
+  public List<Move> getMoves(){
+    return moves;
+  }
 
   public boolean solve() {
     if(hasSolvedPuzzle()){

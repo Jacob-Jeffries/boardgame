@@ -2,8 +2,8 @@ package games;
 
 public class Move {
   private Piece piece;
-  private Coordinate before;
-  private Coordinate after;
+  public Coordinate before;
+  public Coordinate after;
 
   public Move(Piece aPiece, Coordinate beforeLocation, Coordinate afterLocation) {
     piece = aPiece;
