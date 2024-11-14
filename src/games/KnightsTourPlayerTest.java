@@ -16,7 +16,7 @@ public class KnightsTourPlayerTest {
   private Coordinate a1 = new Coordinate('a', 1);
   private Coordinate b3 = new Coordinate('b',3);
   private Coordinate c2 = new Coordinate('c', 2);
-  private Player player;
+  private KnightsTourPlayer player;
   private Board board;
 
   @BeforeEach
@@ -37,7 +37,7 @@ public class KnightsTourPlayerTest {
     // This will add a knight 36x in one square.
     // When we creating the KTP, we added one move for piece placement.
     Move phonyMove = new Move(knight, null, a1);
-    for( int i=1; i < (board.size()^2); ++i){
+    for( int i=1; i < (board.size()*board.size()); ++i){
       assertFalse(player.hasSolvedPuzzle());
       player.getMoves().add(phonyMove);
     }
@@ -61,13 +61,18 @@ public class KnightsTourPlayerTest {
   }
 
   @Test
-  public void testNextKnightCoordinate(){
-    List<Coordinate> nextCoords = player.nextKnightCoordinate();
+  public void testNextKnightCoordinates(){
+    List<Coordinate> nextCoords = player.nextKnightCoordinates();
     assertEquals(2, nextCoords.size());
     Move nextMove = new Move(new Knight(), a1, c2);
     player.make(nextMove);
-    nextCoords = player.nextKnightCoordinate();
+    nextCoords = player.nextKnightCoordinates();
     assertEquals(6, nextCoords.size());
+  }
+
+  @Test
+  public void testSolve(){
+    assertTrue(player.solve());
   }
 
   public Move findMove(List<Move> moves, Coordinate aCoordinate){

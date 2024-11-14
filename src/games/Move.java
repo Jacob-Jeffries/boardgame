@@ -26,4 +26,8 @@ public class Move {
     }
   }
 
+  public Piece getPiece(){
+    return piece;
+  }
+
 }

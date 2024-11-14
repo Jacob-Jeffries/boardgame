@@ -1,5 +1,6 @@
 package games;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class KnightsTourPlayer extends Player{
@@ -16,9 +17,35 @@ public class KnightsTourPlayer extends Player{
   }
 
   @Override
-  public List<Move> nextLegalMoves(){
-    List<Move> nextMoves;
-    return null;
+  public List<Move> nextLegalMoves() {
+    Coordinate knightCoordinate = moves.get(moves.size() - 1).after;
+    Knight knight = (Knight) moves.get(moves.size() - 1).getPiece();
+    List<Move> nextMoves = new ArrayList<Move>();
+    List<Coordinate> nextKnightCoordinates = new ArrayList<Coordinate>();
+    List<Coordinate> nextCoords = nextKnightCoordinates();
+    for (Coordinate eachCoordinate : nextCoords) {
+      if (!hasVisited(eachCoordinate)) {
+        Move aMove = new Move(knight, knightCoordinate, eachCoordinate);
+        nextMoves.add(aMove);
+      }
+    }
+    return nextMoves;
+  }
+
+  public List<Coordinate> nextKnightCoordinates(){
+    Coordinate knightCoordinate = moves.get(moves.size()-1).after;
+    List<Coordinate> nextCoords = new ArrayList<Coordinate>();
+    int[] fileOffsets = {1,2,2,1,-1,-2,-2,-1};
+    int[] rankOffsets = {2,1,-1,-2,-2,-1,1,2};
+    for(int i = 0; i < fileOffsets.length; ++i){
+      int newFileIndex = knightCoordinate.fileIndex + fileOffsets[i];
+      int newRankIndex = knightCoordinate.rankIndex + rankOffsets[i];
+      if (newFileIndex >= 0 && newFileIndex < board.size()
+            && newRankIndex >=0 && newRankIndex < board.size()){
+              nextCoords.add(new Coordinate(newFileIndex, newRankIndex));
+      }
+    }
+    return nextCoords;
   }
 
 }
