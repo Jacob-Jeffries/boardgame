@@ -1,7 +1,9 @@
 package games;
 
+import java.io.StringWriter;
+
 public class Move {
-  private Piece piece;
+  public Piece piece;
   public Coordinate before;
   public Coordinate after;
 
@@ -26,8 +28,18 @@ public class Move {
     }
   }
 
-  public Piece getPiece(){
-    return piece;
+  @Override
+  public String toString(){
+    StringWriter writer = new StringWriter();
+    // This is always looking at a string in memory - it will not throw an exception.
+    writer.write(piece.toString());
+    writer.write(" ");
+    if(before != null){
+      writer.write(before.toString());
+      writer.write(" -> ");
+    }
+    writer.write(after.toString());
+    return writer.toString();
   }
 
 }

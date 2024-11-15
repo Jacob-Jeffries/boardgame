@@ -21,7 +21,7 @@ public class KnightsTourPlayerTest {
 
   @BeforeEach
   public void setUp(){
-    board = new Board(6, Color.BLACK, Color.WHITE);
+    board = new Board(9, Color.BLACK, Color.WHITE);
     player = new KnightsTourPlayer(board, a1); // This presents less objects to the user. Less coupling makes making changes later.
   }
 
@@ -54,7 +54,7 @@ public class KnightsTourPlayerTest {
     nextMoves = player.nextLegalMoves();
     assertEquals(5, nextMoves.size());
     assertNull(findMove(nextMoves, a1));
-    Coordinate d4 = new Coordinate('d', 3);
+    Coordinate d4 = new Coordinate('d', 4);
     Coordinate e3 = new Coordinate('e', 3);
     assertEquals(d4, findMove(nextMoves, d4).after);
     assertEquals(e3, findMove(nextMoves, e3).after);
@@ -73,6 +73,10 @@ public class KnightsTourPlayerTest {
   @Test
   public void testSolve(){
     assertTrue(player.solve());
+    System.out.println("The problem has been solved");
+    for(Move eachMove : player.moves){
+      System.out.println(eachMove.toString());
+    }
   }
 
   public Move findMove(List<Move> moves, Coordinate aCoordinate){

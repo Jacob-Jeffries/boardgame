@@ -19,7 +19,7 @@ public class KnightsTourPlayer extends Player{
   @Override
   public List<Move> nextLegalMoves() {
     Coordinate knightCoordinate = moves.get(moves.size() - 1).after;
-    Knight knight = (Knight) moves.get(moves.size() - 1).getPiece();
+    Knight knight = (Knight) moves.get(moves.size() - 1).piece;
     List<Move> nextMoves = new ArrayList<Move>();
     List<Coordinate> nextKnightCoordinates = new ArrayList<Coordinate>();
     List<Coordinate> nextCoords = nextKnightCoordinates();
@@ -30,6 +30,15 @@ public class KnightsTourPlayer extends Player{
       }
     }
     return nextMoves;
+  }
+
+  public boolean hasVisited(Coordinate aCoord){
+    for(Move eachMove : moves){
+      if(eachMove.after.equals(aCoord)){
+        return true;
+      }
+    }
+    return false;
   }
 
   public List<Coordinate> nextKnightCoordinates(){
