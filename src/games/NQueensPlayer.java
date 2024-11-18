@@ -10,7 +10,7 @@ public class NQueensPlayer extends Player{
 
   @Override
   public boolean hasSolvedPuzzle() {
-    return false;
+    return (moves.size() == board.size());
   }
 
   @Override
